@@ -1,0 +1,12 @@
+
+.li{
+    transition: 0.2s linear;
+}
+
+
+
+.li:hover,
+.li a.active{
+    transform: scale(1.1);
+    text-decoration: underline;
+} 
