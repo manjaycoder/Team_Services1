@@ -10,22 +10,19 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+ const handleLogin = async (event) => {
+  event.preventDefault();
 
-    if (!email.trim() || !password.trim()) {
-      setError('Email and password are required.');
-      return;
-    }
+  if (!email.trim() || !password.trim()) {
+    setError('Email and password are required.');
+    return;
+  }
 
+  // Check for specific email and password
+  if (email === 'manjay.verma.coder@gmail.com' && password === 'manjay.verma.coder') {
     try {
-      // Dummy role logic based on email
-      let role = 'viewer'; // default
-      if (email.includes('admin')) role = 'admin';
-      else if (email.includes('manager')) role = 'manager';
-
       // Call login function from context
-      login(email, role); // You can add EmpId and userName if needed
+      login(email); // You can add EmpId and userName if needed
 
       // Redirect
       navigate('/Team-Service-UI/', { replace: true });
@@ -33,7 +30,11 @@ const Login = () => {
       setError('Login failed. Please try again.');
       console.error(err);
     }
-  };
+  } else {
+    setError('Invalid email or password.');
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
